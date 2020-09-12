@@ -1,0 +1,209 @@
+{% extends "seller/layout.html"%}
+{% load static %}
+{% block content %}
+{% csrf_token %}
+<h1 class="mt-5 pt-4 pb-4" style=" font-weight:bold; text-align: center; font-family: Metal Mania ;">Add your dishes here</h1>
+{% if message %}
+<div>
+    {{ message }}
+</div>
+{% endif %}
+<form method="post" action="{% url 'additem'%}" enctype="multipart/form-data">
+    {% csrf_token %}
+            <div class="card px-4 mx-5" style=" font-weight:bold; color: #265772; margin-left: 8% !important; margin-right:8% !important;">
+                <article class="card-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" name="dish_name" id="dish_name" required>
+                            </div> <!-- form-group end.// -->
+                            <div class="col form-group">
+                                <label>Category</label>
+                        <select class="form-control" name="dish_category" id="dish_category"
+                        value="{{ category }}" >
+                            {% for mykey,myvalue in dish_category%}
+                            <option value="{{ mykey }}">{{myvalue}}</option>
+                            {% endfor %}
+                        </select>
+                            </div> <!-- form-group end.// -->
+                        </div> <!-- form-row end.// -->
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>Nationality</label>
+                                <select required class="form-control" name="dish_nationality" id="dish_nationality" class="custom-select">
+                                    {% for mykey,myvalue in nationality%}
+                                    <option value="{{ mykey }}">{{myvalue}}</option>
+                                    {% endfor %}
+                                </select>
+                                
+                            </div> <!-- form-group end.// -->
+                            <div class="col form-group">
+                                <label>No of serving</label>
+                                <input type="number" class="form-control" min="1" name="dish_no_of_serving"
+                                    id="dish_no_of_serving" required>
+                            </div> <!-- form-group end.// -->
+                        </div> <!-- form-row end.// -->
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label> Glutten-free: </label>
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="dish_glutten_free_yes"
+                                        name="dish_glutten_free" value="yes">
+                                    <span class="form-check-label" style="font-weight: normal; color:black;">
+                                        Yes </span>
+                                </label>
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="dish_glutten_free_no"
+                                        name="dish_glutten_free" value="no">
+                                    <span class="form-check-label" style="font-weight: normal; color:black;">
+                                        No </span>
+                                </label>
+                            </div> <!-- form-group end.// -->
+                            <div class="col form-group">
+                                <label> Customizable: </label>
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="dish_customizable_yes"
+                                        name="dish_customizable" value="yes">
+                                    <span class="form-check-label" style="font-weight: normal; color:black;">
+                                        Yes </span>
+                                </label>
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="dish_customizable_no"
+                                        name="dish_customizable" value="no">
+                                    <span class="form-check-label" style="font-weight: normal; color:black;">
+                                        No </span>
+                                </label>
+                            </div> <!-- form-group end.// -->
+                        </div> <!-- form-row end.// -->
+                        <div class="form-group">
+                            <label>Summary</label>
+                            <input type="text" name="dish_summary" class="form-control" id="dish_summary" required>
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input class="form-control" type="text" name="dish_price" required>
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group">
+                            
+                            {{ form.as_p }}
+                            
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group text-center mt-4">
+                            <button type="submit" id="dish-add-button" class="btn btn-primary  p-1.5 px-5 rounded "
+                                style="background-color: #265772; font-weight:bold; font-size:19px; color:white; "> Add </button>
+                        </div> <!-- form-group// -->
+                    </form>
+                </article> <!-- card-body end .// -->
+            </div> <!-- card.// -->
+        
+</form>
+{%endblock%}
+
+
+
+
+<!--
+<h1 class="mt-5 pt-4 pb-3" style=" font-weight:bold; text-align: center;">Add your dishes here</h1>
+{% if message %}
+<div>
+    {{ message }}
+</div>
+{% endif %}
+<form method="post" action="{% url 'additem'%}" enctype="multipart/form-data">
+    
+            <div class="card px-4 mx-5" style=" font-weight: bold; margin-left: 8% !important; margin-right:8% !important;">
+                <article class="card-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" name="dish_name" id="dish_name" required>
+                            </div>  form-group end.// 
+                            <div class="col form-group">
+                                <label>Category</label>
+                        <select class="form-control" name="dish_category" id="dish_category"
+                        value="{{ category }}" >
+                            {% for mykey,myvalue in dish_category%}
+                            <option value="{{ mykey }}">{{myvalue}}</option>
+                            {% endfor %}
+                        </select>
+                            </div>  form-group end.// 
+                        </div>  form-row end.// 
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>Nationality</label>
+                                <select required class="form-control" name="dish_nationality" id="dish_nationality" class="custom-select">
+                                    {% for mykey,myvalue in nationality%}
+                                    <option value="{{ mykey }}">{{myvalue}}</option>
+                                    {% endfor %}
+                                </select>
+                                
+                            </div>  form-group end.// 
+                            <div class="col form-group">
+                                <label>No of serving</label>
+                                <input type="number" class="form-control" min="1" name="dish_no_of_serving"
+                                    id="dish_no_of_serving" required>
+                            </div>  form-group end.// 
+                        </div>  form-row end.// 
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label> Glutten-free: </label>
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="dish_glutten_free_yes"
+                                        name="dish_glutten_free" value="yes">
+                                    <span class="form-check-label" style="font-weight: normal; color:rgb(117, 55, 55);">
+                                        Yes </span>
+                                </label>
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="dish_glutten_free_no"
+                                        name="dish_glutten_free" value="no">
+                                    <span class="form-check-label" style="font-weight: normal; color:rgb(117, 55, 55);">
+                                        No </span>
+                                </label>
+                            </div>  form-group end.// 
+                            <div class="col form-group">
+                                <label> Customizable: </label>
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="dish_customizable_yes"
+                                        name="dish_customizable" value="yes">
+                                    <span class="form-check-label" style="font-weight: normal; color:rgb(117, 55, 55);">
+                                        Yes </span>
+                                </label>
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="dish_customizable_no"
+                                        name="dish_customizable" value="no">
+                                    <span class="form-check-label" style="font-weight: normal; color:rgb(117, 55, 55);">
+                                        No </span>
+                                </label>
+                            </div>  form-group end.// 
+                        </div>  form-row end.// 
+                        <div class="form-group">
+                            <label>Summary</label>
+                            <input type="text" name="dish_summary" class="form-control" id="dish_summary" required>
+                        </div>  form-group end.// 
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input class="form-control" type="text" name="dish_price" required>
+                        </div>  form-group end.// 
+                        <div class="form-group">
+                            
+                            {{ form.as_p }}
+                            
+                        </div>  form-group end.// 
+                        <div class="form-group text-center mt-4">
+                            <button type="submit" id="dish-add-button" class="btn btn-primary  p-1.5 px-5 rounded "
+                                style="background-color: #FEB921; font-weight:bold; font-size:19px; color:#722910;"> Add </button>
+                        </div>  form-group// 
+                    </form>
+                </article>  card-body end .// 
+            </div>  card.// 
+        </div>  col.//
+
+    </div>  row.//
+
+
+    </div>
+    container end.//
+
+-->

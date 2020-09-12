@@ -1,0 +1,23 @@
+.overall{
+    background-color: #D7E6EE;
+}
+.dark-brown{
+    color: #4B85A4;
+}
+img:hover{
+    cursor: pointer;
+}
+.icon{
+    background-image: url(icon3.png);
+    width: 100px;
+    height:100px;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+   background-repeat: no-repeat;
+      background-color: #265772;
+}
+.m123 {
+    margin: 11% !important;
+    margin-top: 10% !important;
+}
+

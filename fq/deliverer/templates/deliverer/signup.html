@@ -1,0 +1,140 @@
+{% extends "deliverer/layout.html"%}
+{% load static %}
+{% block content %}
+<section class="reg-log-sec">
+    <div class="row justify-content-center p-5 register-login-div">
+        <div class="col-md-6">
+            <div class="card" style="padding:3%;font-weight: bold;">
+                <header class="card-header">
+                    <h4 class="card-title text-center mt-2" style="font-size: 36px; color:black; font-family: Metal Mania !important; ">Register</h4>
+                </header>
+                <article class="card-body">
+                    <form method="post" action="{% url 'register_deliverer' %}">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>First name</label>
+                                <input type="text" class="form-control" name="first-name" required placeholder="">
+                            </div> <!-- form-group end.// -->
+                            <div class="col form-group">
+                                <label>Last name</label>
+                                <input type="text" class="form-control" name="last-name" required placeholder="">
+                            </div> <!-- form-group end.// -->
+                        </div> <!-- form-row end.// -->
+                        <div class="form-group">
+                            <label>Email address</label>
+                            <input type="email" class="form-control" name="email" required placeholder="abc@domain.com">
+                            <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group">
+                            <label>Vehicle Number</label>
+                            <input type="text"  class="form-control" name="vehicle_number" required>
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text"  class="form-control" maxlength="20" name="phone_number" required>
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group">
+                            <label>Create password</label>
+                            <input class="form-control" name="password" required type="password">
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input class="form-control" name="confirm_password" required type="password">
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group">
+                            <button type="submit" id="register-button" class="btn btn-block"
+                                style="background-color: #265772; color: white;"> Register as a Deliverer
+                            </button>
+                        </div> <!-- form-group// -->
+                        <small class="text-muted">By clicking the 'Register' button, you confirm that you accept our <b>
+                                Terms of use</b> and <b>Privacy Policy.</b></small>
+                    </form>
+                </article> <!-- card-body end .// -->
+                <div class="border-top card-body text-center">Have an account? <a href="login.html">Log In</a></div>
+            </div> <!-- card.// -->
+            
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+                {{message}}
+            </div>
+            {% endfor%}
+        {% endif %}
+        </div> <!-- col.//-->
+
+    </div> <!-- row.//-->
+
+
+    </div>
+    <!--container end.//-->
+</section>
+
+{% endblock %}
+<!--
+<section class="reg-log-sec">
+    <div class="row justify-content-center p-5 register-login-div">
+        <div class="col-md-6">
+            <div class="card" style="padding:3%;font-weight: bold;">
+                <header class="card-header">
+                    <h4 class="card-title text-center mt-2" style="font-size: 36px;">Register</h4>
+                </header>
+                <article class="card-body">
+                    <form method="post" action="{% url 'register_deliverer' %}">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>First name</label>
+                                <input type="text" class="form-control" name="first-name" required placeholder="">
+                            </div> form-group end.// 
+                            <div class="col form-group">
+                                <label>Last name</label>
+                                <input type="text" class="form-control" name="last-name" required placeholder="">
+                            </div>  form-group end.// 
+                        </div>  form-row end.// 
+                        <div class="form-group">
+                            <label>Email address</label>
+                            <input type="email" class="form-control" name="email" required placeholder="abc@domain.com">
+                            <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>  form-group end.// 
+                        <div class="form-group">
+                            <label>Vehicle Number</label>
+                            <input type="text"  class="form-control" name="vehicle_number" required>
+                        </div>  form-group end.// 
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text"  class="form-control" maxlength="20" name="phone_number" required>
+                        </div>  form-group end.// 
+                        <div class="form-group">
+                            <label>Create password</label>
+                            <input class="form-control" name="password" required type="password">
+                        </div>  form-group end.// 
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input class="form-control" name="confirm_password" required type="password">
+                        </div>  form-group end.// 
+                        <div class="form-group">
+                            <button type="submit" id="register-button" class="btn btn-block"
+                                style="background-color: #FEB921; font-weight:bold; color:#722910;"> Register as a Deliverer
+                            </button>
+                        </div>  form-group// 
+                        <small class="text-muted">By clicking the 'Register' button, you confirm that you accept our <b>
+                                Terms of use</b> and <b>Privacy Policy.</b></small>
+                    </form>
+                </article>  card-body end .// 
+                <div class="border-top card-body text-center">Have an account? <a href="login.html">Log In</a></div>
+            </div>  card.// 
+            
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+                {{message}}
+            </div>
+            {% endfor%}
+        {% endif %}
+        </div> 
+    </div> 
+
+
+    </div>
+</section>-->

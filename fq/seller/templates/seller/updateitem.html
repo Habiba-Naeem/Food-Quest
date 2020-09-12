@@ -1,0 +1,249 @@
+{% extends "seller/layout.html"%}
+{% load static %}
+{% block content %}
+<h1 class="mt-5 pt-4 pb-3" style=" font-weight:bold; font-family: Metal Mania; text-align: center;">Update {{ name }} here</h1>
+<form method="post" action="{% url 'itemupdated' dish_id=dish_id %}"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="card px-4 mx-5 pt-2" style=" font-weight: bold; color: #265772; margin-left: 8% !important; margin-right:8% !important;">
+        <article class="card-body">
+            <form>
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="dish_name" id="dish_name" value="{{ name }}"
+                            required>
+                    </div> <!-- form-group end.// -->
+                    <div class="col form-group">
+                        <label>Category</label>
+                        <select class="form-control" name="dish_category" id="dish_category"
+                        value="{{ category }}" >
+                            {% for mykey,myvalue in dish_category%}
+                            <option value="{{ mykey }}">{{myvalue}}</option>
+                            {% endfor %}
+                        </select>
+                        
+                    </div> <!-- form-group end.// -->
+                </div> <!-- form-row end.// -->
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label>Nationality</label>
+                        <select required class="form-control" name="dish_nationality" id="dish_nationality" class="custom-select">
+                            {% for mykey,myvalue in nationality%}
+                            <option value="{{ mykey }}">{{myvalue}}</option>
+                            {% endfor %}
+                        </select>
+                    </div> <!-- form-group end.// -->
+                    <div class="col form-group">
+                        <label>No of serving</label>
+                        <input type="number" class="form-control" min="1" name="dish_no_of_serving"
+                            id="dish_no_of_serving" value="{{ no_of_serving }}" required>
+                    </div> <!-- form-group end.// -->
+                </div> <!-- form-row end.// -->
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label> Glutten-free: </label>
+                        <label class="form-check form-check-inline">
+                            {% if glutten_free == "Yes" %}
+                            <input type="radio" id="dish_glutten_free_yes" class="form-check-input"
+                                name="dish_glutten_free" value="Yes" checked="True">
+                            {% elif glutten_free != "Yes" %}
+                            <input type="radio" id="dish_glutten_free_yes" class="form-check-input"
+                                name="dish_glutten_free" value="Yes">
+                            {% endif %}
+                            <span class="form-check-label" style="font-weight: normal; color:black;">
+                                Yes </span>
+                        </label>
+                        <label class="form-check form-check-inline">
+                            {% if glutten_free == "No" %}
+                            <input type="radio" class="form-check-input" id="dish_glutten_free_no"
+                                name="dish_glutten_free" value="No" checked="True">
+                            {% elif glutten_free != "No" %}
+                            <input type="radio" class="form-check-input" id="dish_glutten_free_no"
+                                name="dish_glutten_free" value="No">
+                            {% endif %}
+                            <span class="form-check-label" style="font-weight: normal; color:black;">
+                                No </span>
+                        </label>
+                    </div> <!-- form-group end.// -->
+                    <div class="col form-group">
+                        <label> Customizable: </label>
+                        <label class="form-check form-check-inline">
+                            {% if customizable == "Yes" %}
+                            <input type="radio" class="form-check-input" id="dish_customizable_yes"
+                                name="dish_customizable" value="Yes" checked="True">
+                            {% elif customizable != "Yes" %}
+                            <input type="radio" class="form-check-input" id="dish_customizable_yes"
+                                name="dish_customizable" value="Yes">
+                            {% endif %}
+                            <span class="form-check-label" style="font-weight: normal; color:black;">
+                                Yes </span>
+                        </label>
+                        <label class="form-check form-check-inline">
+                            {% if customizable == "No" %}
+                            <input type="radio" class="form-check-input" id="dish_customizable_no"
+                                name="dish_customizable" value="No" checked="True">
+                            {% elif customizable != "No" %}
+                            <input type="radio" class="form-check-input" id="dish_gcustomizable_no"
+                                name="dish_customizable" value="No">
+                            {% endif %}
+                            <span class="form-check-label" style="font-weight: normal; color:black;">
+                                No </span>
+                        </label>
+                    </div> <!-- form-group end.// -->
+                </div> <!-- form-row end.// -->
+                <div class="form-group">
+                    <label>Summary</label>
+                    <input type="text" name="dish_summary" class="form-control" id="dish_summary" value="{{ summary }}"
+                        required>
+                </div> <!-- form-group end.// -->
+                <div class="form-group">
+                    <label>Price</label>
+                    <input class="form-control" type="text" value="{{ price }}" name="dish_price" required>
+                </div> <!-- form-group end.// -->
+                <div class="form-group">
+                    <div class="text-center">
+                        {% if dish.picture %}
+                            <img class="img-fluid img-thumbnail" src="{{ dish.picture.url }}" >
+                        {% endif %}
+                        </div>
+                        <br>
+
+                    {{ form.as_p }}
+
+                    <!--<input type="file" class="pl-3" name="dish_picture" id="dish_picture" value="{{ picture }}"
+                        required>-->
+                    
+                </div> <!-- form-group end.// -->
+                <div class="form-group  mt-4 text-center ">
+                    <button type="submit" class="btn btn-primary  p-1.5 px-5 rounded"
+                        style="background-color: #265772; font-weight:bold; font-size:19px; color:white;"
+                        id="dish-update-button">Update</button>
+                </div> <!-- form-group// -->
+            </form>
+        </article> <!-- card-body end .// -->
+    </div> <!-- card.// -->
+</form>
+{% endblock %}
+<!--
+<h1 class="mt-5 pt-4 pb-3" style=" font-weight:bold; text-align: center;">Update {{ name }} here</h1>
+<form method="post" action="{% url 'itemupdated' dish_id=dish_id %}"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="card px-4 mx-5" style=" font-weight: bold; margin-left: 8% !important; margin-right:8% !important;">
+        <article class="card-body">
+            <form>
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="dish_name" id="dish_name" value="{{ name }}"
+                            required>
+                    </div>  form-group end.// 
+                    <div class="col form-group">
+                        <label>Category</label>
+                        <select class="form-control" name="dish_category" id="dish_category"
+                        value="{{ category }}" >
+                            {% for mykey,myvalue in dish_category%}
+                            <option value="{{ mykey }}">{{myvalue}}</option>
+                            {% endfor %}
+                        </select>
+                        
+                    </div>  form-group end.// 
+                </div>  form-row end.// 
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label>Nationality</label>
+                        <select required class="form-control" name="dish_nationality" id="dish_nationality" class="custom-select">
+                            {% for mykey,myvalue in nationality%}
+                            <option value="{{ mykey }}">{{myvalue}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>  form-group end.// 
+                    <div class="col form-group">
+                        <label>No of serving</label>
+                        <input type="number" class="form-control" min="1" name="dish_no_of_serving"
+                            id="dish_no_of_serving" value="{{ no_of_serving }}" required>
+                    </div>  form-group end.// 
+                </div>  form-row end.// 
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label> Glutten-free: </label>
+                        <label class="form-check form-check-inline">
+                            {% if glutten_free == "Yes" %}
+                            <input type="radio" id="dish_glutten_free_yes" class="form-check-input"
+                                name="dish_glutten_free" value="Yes" checked="True">
+                            {% elif glutten_free != "Yes" %}
+                            <input type="radio" id="dish_glutten_free_yes" class="form-check-input"
+                                name="dish_glutten_free" value="Yes">
+                            {% endif %}
+                            <span class="form-check-label" style="font-weight: normal; color:rgb(117, 55, 55);">
+                                Yes </span>
+                        </label>
+                        <label class="form-check form-check-inline">
+                            {% if glutten_free == "No" %}
+                            <input type="radio" class="form-check-input" id="dish_glutten_free_no"
+                                name="dish_glutten_free" value="No" checked="True">
+                            {% elif glutten_free != "No" %}
+                            <input type="radio" class="form-check-input" id="dish_glutten_free_no"
+                                name="dish_glutten_free" value="No">
+                            {% endif %}
+                            <span class="form-check-label" style="font-weight: normal; color:rgb(117, 55, 55);">
+                                No </span>
+                        </label>
+                    </div>  form-group end.// 
+                    <div class="col form-group">
+                        <label> Customizable: </label>
+                        <label class="form-check form-check-inline">
+                            {% if customizable == "Yes" %}
+                            <input type="radio" class="form-check-input" id="dish_customizable_yes"
+                                name="dish_customizable" value="Yes" checked="True">
+                            {% elif customizable != "Yes" %}
+                            <input type="radio" class="form-check-input" id="dish_customizable_yes"
+                                name="dish_customizable" value="Yes">
+                            {% endif %}
+                            <span class="form-check-label" style="font-weight: normal; color:rgb(117, 55, 55);">
+                                Yes </span>
+                        </label>
+                        <label class="form-check form-check-inline">
+                            {% if customizable == "No" %}
+                            <input type="radio" class="form-check-input" id="dish_customizable_no"
+                                name="dish_customizable" value="No" checked="True">
+                            {% elif customizable != "No" %}
+                            <input type="radio" class="form-check-input" id="dish_gcustomizable_no"
+                                name="dish_customizable" value="No">
+                            {% endif %}
+                            <span class="form-check-label" style="font-weight: normal; color:rgb(117, 55, 55);">
+                                No </span>
+                        </label>
+                    </div>  form-group end.// 
+                </div>  form-row end.// 
+                <div class="form-group">
+                    <label>Summary</label>
+                    <input type="text" name="dish_summary" class="form-control" id="dish_summary" value="{{ summary }}"
+                        required>
+                </div>  form-group end.// 
+                <div class="form-group">
+                    <label>Price</label>
+                    <input class="form-control" type="text" value="{{ price }}" name="dish_price" required>
+                </div>  form-group end.// 
+                <div class="form-group">
+                    <div class="text-center">
+                        {% if dish.picture %}
+                            <img class="img-fluid img-thumbnail" src="{{ dish.picture.url }}" >
+                        {% endif %}
+                        </div>
+                        <br>
+
+                    {{ form.as_p }}
+
+                    <input type="file" class="pl-3" name="dish_picture" id="dish_picture" value="{{ picture }}"
+                        required>
+                    
+                </div>  form-group end.// 
+                <div class="form-group  mt-4 text-center ">
+                    <button type="submit" class="btn btn-primary  p-1.5 px-5 rounded"
+                        style="background-color: #FEB921; font-weight:bold; font-size:19px; color:#722910;"
+                        id="dish-update-button">Update</button>
+                </div>  form-group// 
+            </form>
+        </article>  card-body end .// 
+    </div>  card.// 
+</form>-->

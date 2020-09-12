@@ -1,0 +1,121 @@
+{% extends "seller/layout.html"%}
+{% load static %}
+{% block content %}
+<h1 class="mt-5 pt-4 pb-3" style=" font-weight:bold; font-family: Metal Mania; text-align: center;">{{ name }} </h1>
+<div class="text-center">
+{% if dish.picture %}
+    <img  class="img-fluid img-thumbnail" src="{{ dish.picture.url }}" style="max-width: 50%; height: auto;" >
+{% endif %}
+</div>
+<br>
+<table class="table table-bordered table-striped bg-light mb-4" style="color:#4B85A4;">
+    <thead>
+        <th scope="col" style=" font-size:22px;" >Dish</th>
+        <th scope="col" style=" font-size:20px;">{{ name }}</th>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Category: </th>
+            <td>{{dish_category}}</td>
+            {% for myvalue in dishcategory %}
+            <td>{{ myvalue.get_category_display }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th scope="row">Nationality: </th>
+            <td>{{ nationality }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Picture:</th>
+            <td>{{ dish.picture }}</td>
+        </tr>
+        <tr>
+            <th scope="row">No of serving:</th>
+            <td> {{ no_of_serving }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Summary: </th>
+            <td>{{ summary }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Glutten Free:</th>
+            <td> {{ glutten_free }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Customizable: </th>
+            <td>{{ customizable }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Price: </th>
+            <td>Rs {{ price }}</td>
+        </tr>
+    </tbody>
+</table>
+<div class="text-center mb-5">
+    <a href="{% url 'updateitem' dish_id=dish_id %}" role="button" class="btn btn-dark justify-content-center btn-lg "
+        style="background-color: #265772; color:white; " aria-disabled="false">Update</a>
+    <a href="{% url 'deleteitem' dish_id=dish_id %}" role="button" class="btn btn-dark justify-content-center btn-lg "
+        style="background-color: #265772;color:white; " aria-disabled="false">Delete</a>
+</div>
+
+
+{% endblock %}
+
+<!--
+<h1 class="mt-5 pt-4 pb-3" style=" font-weight:bold; text-align: center;">{{ name }} </h1>
+<div class="text-center">
+{% if dish.picture %}
+    <img  class="img-fluid img-thumbnail" src="{{ dish.picture.url }}" style="max-width: 50%; height: auto;" >
+{% endif %}
+</div>
+<br>
+<table class="table table-bordered table-striped bg-light mb-4" style="color:rgb(143, 49, 49);">
+    <thead>
+        <th scope="col" style=" font-size:22px;" >Dish</th>
+        <th scope="col" style=" font-size:20px;">{{ name }}</th>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Category: </th>
+            <td>{{dish_category}}</td>
+            {% for myvalue in dishcategory %}
+            <td>{{ myvalue.get_category_display }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th scope="row">Nationality: </th>
+            <td>{{ nationality }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Picture:</th>
+            <td>{{ dish.picture }}</td>
+        </tr>
+        <tr>
+            <th scope="row">No of serving:</th>
+            <td> {{ no_of_serving }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Summary: </th>
+            <td>{{ summary }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Glutten Free:</th>
+            <td> {{ glutten_free }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Customizable: </th>
+            <td>{{ customizable }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Price: </th>
+            <td>Rs {{ price }}</td>
+        </tr>
+    </tbody>
+</table>
+<div class="text-center mb-5">
+    <a href="{% url 'updateitem' dish_id=dish_id %}" role="button" class="btn btn-dark justify-content-center btn-lg "
+        style="background-color: #722910;" aria-disabled="false">Update</a>
+    <a href="{% url 'deleteitem' dish_id=dish_id %}" role="button" class="btn btn-dark justify-content-center btn-lg "
+        style="background-color: #722910;" aria-disabled="false">Delete</a>
+</div>
+-->

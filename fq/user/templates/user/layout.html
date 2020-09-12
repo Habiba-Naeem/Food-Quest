@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'user/style.css' %}">
+        <link rel="stylesheet" href="{% static 'user/mainstyle.css' %}">
+        <link rel="stylesheet" href="{% static 'user/style ariba.css' %}">
+        <script src="{% static 'user/app.js' %}"></script>
+        <script src="{% static 'user/main.js' %}"></script>
+        <script src="{% static 'cart/main.js' %}"></script>
+
+        <!--habiba-->
+        <title>Food Quest</title>
+        <!--habiba-->
+    </head>
+    <body  class="body overall" id="top" style=" background-color: #D7E6EE;
+    color: #4B85A4;">
+        <nav class="navbar container-fluid navbar-expand-lg navbar-dark bg-dark" style="background-color:black !important;" >
+            <a class="navbar-brand"  style="font-size: 30px" href="{% url 'user_index'%}"><b>Food<label style="Color: #4B85A4">Quest</label></b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-light" href="{% url 'user_index'%}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Restaurants
+                        </a>
+                        
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for restaurant in restaurants %}
+                            <a class=" dropdown-item" href="{% url 'restaurant' restaurant.name%}">{{ restaurant.name }}</a>
+                            {% endfor %}
+                        </div>
+                        
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'cart' %}">Cart</a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{% url 'vieworders'%}">Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{% url 'user_index'%}">{{ name }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{% url 'logout_user'%}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{% url 'login_user'%}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{% url 'register_user'%}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        
+        <!--habiba-->
+        
+        {% block content %}
+        {% endblock%}
+        <!--habiba-->
+        
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    </body>
+</html>
+<!--
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'user/style.css' %}">
+        <link rel="stylesheet" href="{% static 'user/mainstyle.css' %}">
+        <link rel="stylesheet" href="{% static 'user/style ariba.css' %}">
+        <script src="{% static 'user/app.js' %}"></script>
+        <script src="{% static 'user/main.js' %}"></script>
+        <script src="{% static 'cart/main.js' %}"></script>
+
+        habiba
+        <title>Food Quest</title>
+        habiba
+    </head>
+    <body  class="body overall" id="top">
+        <nav class="navbar container-fluid navbar-expand-lg navbar-light bg-dark" >
+            <a class="navbar-brand"  style="font-size: 30px" href="{% url 'user_index'%}"><b>Food<label style="Color:rgb(207, 73, 73)">Quest</label></b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-light" href="{% url 'user_index'%}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Restaurants
+                        </a>
+                        
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for restaurant in restaurants %}
+                            <a class=" dropdown-item" href="{% url 'restaurant' restaurant.name%}">{{ restaurant.name }}</a>
+                            {% endfor %}
+                        </div>
+                        
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'cart' %}">Cart</a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{% url 'vieworders'%}">Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{% url 'user_index'%}">{{ name }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{% url 'logout_user'%}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{% url 'login_user'%}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{% url 'register_user'%}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        
+        habiba
+        
+        
+        habiba
+        
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    </body>
+</html>

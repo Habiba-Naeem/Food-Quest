@@ -1,0 +1,410 @@
+{% extends "user/layout.html"%}
+{% load static %}
+{% block content %}
+<div id="carouselExampleCaptions" class="carousel slide pointer-event" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class=""></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1" class=""></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2" class="active"></li>
+    </ol>
+    <div id="carouselExampleIndicators" class="carousel slide pointer-event" data-ride="carousel" data-interval="4000">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2" class=""></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item">
+                <img src="{% static 'user\imgs\9.jpg' %}" class="d-block w-100 img-fluid h-auto" alt="LoveFood">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1>We are #HereToDeliver</h1>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'user\imgs\87.jpg' %}" class="d-block w-100 img-fluid h-auto" alt="LoveFood">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1>Good Food For Your Everyday</h1>
+                </div>
+            </div>
+            <div class="carousel-item active">
+                <img src="{% static 'user\imgs\10.jpg' %}" class="d-block w-100 img-fluid h-auto" alt="LoveFood">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1>Your Favourite Restaurants,Delivered</h1>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="jumbotron jumbotron-fluid " style="background-color: #D7E6EE;">
+        <div class="container">
+            <h1 class="display-4 center"><b>What's on the menu?</b>
+                <hr>
+            </h1>
+            <div class="row row-cols-1 row-cols-md-3" style="color:black;">
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\1.jpg' %}" class="card-img-top" alt="Food">
+                        <div class="card-body">
+                            <h5 class="card-title">Craving Food</h5>
+                            <p class="card-text">Craving burgers, pizza or ramen? Order food that always hit the spot.
+                            </p>
+                            <a href="{% url 'browseRestaurants' %}">Comfort your cravings</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\desserts.jpg' %}" class="card-img-top" alt="Food">
+                        <div class="card-body">
+                            <h5 class="card-title">Desserts and Sweet dishes</h5>
+                            <p class="card-text">Sweet delights that are a tasty addition to any day.</p>
+                            <a href="{% url 'browseRestaurants' %}">View Desserts and Sweet dishes</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\pasta.jpg' %}" class="card-img-top" alt="Food">
+                        <div class="card-body">
+                            <h5 class="card-title">Love savour?</h5>
+                            <p class="card-text">Search through best restaurants and quench your love for savory food?
+                            </p>
+                            <a href="{% url 'browseRestaurants' %}">View savory</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\busi.jpg' %}" class="card-img-top" alt="Food">
+                        <div class="card-body">
+                            <h5 class="card-title">Office Catering</h5>
+                            <p class="card-text">Check out our platters created just for the office.</p>
+                            <a href="{% url 'browseRestaurants' %}">View office catering</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\Healthy.jpg' %}" class="card-img-top" alt="Food">
+                        <div class="card-body">
+                            <h5 class="card-title">Healthy </h5>
+                            <p class="card-text">Get healthy food at your doorstep at LoveFood.</p>
+                            <a href="{% url 'browseRestaurants' %}">View best healthy food</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\bbq.jpg' %}" class="card-img-top" alt="Food">
+                        <div class="card-body">
+                            <h5 class="card-title">Big flavours, low prices</h5>
+                            <p class="card-text">Check out our selection
+                                of wallet friendly eats.</p>
+                            <a href="{% url 'browseRestaurants' %}">Big flavours, low prices</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <h1 class="display-4">
+                <br>
+                <b>Need some more Options?</b>
+                <hr>
+            </h1>
+            <p class="lead">
+            <div class="btn-group" role="group" aria-label="buttons">
+                {% for mykey,myvalue in category %}
+                <a href="{% url 'browseRestaurants_oncategory' mykey %}" class="btn btn-light b1 btn-md active"
+                    style="background-color: #265772 !important; color:white !important;" role="button"
+                    aria-pressed="true">{{myvalue}}</a>
+                {% endfor %}
+            </div>
+            </p>
+        </div>
+
+        <div class="container">
+            <h1 class="display-4">
+                <br>
+                <b>Work with FoodQuest</b>
+                <hr>
+            </h1>
+            <div class="row row-cols-1 row-cols-md-2" style="color:black;">
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\donuts.jpg' %}" class="card-img-top cit" alt="Restaurants">
+                        <div class="card-body">
+                            <h2 class="card-title"><b>Restaurants</h2>
+                            <h5 class="card-text">Partner with LoveFood and reach more customers than ever. We
+                                handle delivery, so you can focus on the food.</h5>
+                            <a href="{% url 'register_seller'%}" class="btn btn-warning">Partner with us</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\bike.jpg' %}" class="card-img-top cit" alt="Riders">
+                        <div class="card-body">
+                            <h2 class="card-title"><b>Riders</b>
+                            </h2>
+                            <h5 class="card-text">Become a rider at LoveFood and enjoy the freedom to fit work around
+                                your life.
+                                Plus great fees, perks and discounts.</h5>
+                            <a href="{% url 'register_deliverer'%}" class="btn btn-warning">Ride with us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer pt-3">
+        <div class="links">
+            <br>
+            <hr style="background-color: rgb(65, 62, 62); margin: 1.5% 12%;">
+            <a href="#" class="l">Terms of Use</a>
+            <a href="#" class="l">Privacy Policy</a>
+            <a href="#" class="l">Cookie Policy</a>
+            <a href="#" class="l">Help</a>
+            <br>
+            <br>
+            <a href="#" class="l">Email</a>
+            <a href="#" class="l">Security</a>
+            <a href="#" class="l">FAQ Knowledge Base</a>
+            <a href="#" class="l">About FoodQuest,Inc.</a>
+            <hr style="background-color: rgb(65, 62, 62); margin: 1.5% 12%;">
+            
+            <br>
+            <div class="last" style="background-color:#265772 ;">
+                <p style="color: white; font-size: 13px; font-weight: bold;">Copyright © 2020 </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!--
+<div id="carouselExampleCaptions" class="carousel slide pointer-event" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class=""></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1" class=""></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2" class="active"></li>
+    </ol>
+    <div id="carouselExampleIndicators" class="carousel slide pointer-event" data-ride="carousel"
+        data-interval="4000">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2" class=""></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item">
+                <img src="{% static 'user\imgs\9.jpg' %}" class="d-block w-100 img-fluid h-auto" alt="LoveFood">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1>We are #HereToDeliver</h1>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'user\imgs\87.jpg' %}"class="d-block w-100 img-fluid h-auto" alt="LoveFood">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1>Good Food For Your Everyday</h1>
+                </div>
+            </div>
+            <div class="carousel-item active">
+                <img src="{% static 'user\imgs\10.jpg' %}" class="d-block w-100 img-fluid h-auto" alt="LoveFood">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1>Your Favourite Restaurants,Delivered</h1>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="jumbotron jumbotron-fluid ">
+        <div class="container">
+            <h1 class="display-4 center"><b>What's on the menu?</b>
+                <hr>
+            </h1>
+            <div class="row row-cols-1 row-cols-md-3">
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\1.jpg' %}" class="card-img-top" alt="Food">
+                        <div class="card-body">
+                            <h5 class="card-title">Craving Food</h5>
+                            <p class="card-text">Craving burgers, pizza or ramen? Order food that always hit the spot.</p>
+                            <a href="{% url 'browseRestaurants' %}">Comfort your cravings</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\desserts.jpg' %}" class="card-img-top" alt="Food">
+                        <div class="card-body">
+                            <h5 class="card-title">Desserts and Sweet dishes</h5>
+                            <p class="card-text">Sweet delights that are a tasty addition to any day.</p>
+                            <a href="{% url 'browseRestaurants' %}">View Desserts and Sweet dishes</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\pasta.jpg' %}" class="card-img-top" alt="Food">
+                        <div class="card-body">
+                            <h5 class="card-title">Love savour?</h5>
+                            <p class="card-text">Search through best restaurants and quench your love for savory food?</p>
+                            <a href="{% url 'browseRestaurants' %}">View savory</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\busi.jpg' %}"class="card-img-top" alt="Food">
+                        <div class="card-body">
+                            <h5 class="card-title">Office Catering</h5>
+                            <p class="card-text">Check out our platters created just for the office.</p>
+                            <a href="{% url 'browseRestaurants' %}">View office catering</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\Healthy.jpg' %}" class="card-img-top" alt="Food">
+                        <div class="card-body">
+                            <h5 class="card-title">Healthy </h5>
+                            <p class="card-text">Get healthy food at your doorstep at LoveFood.</p>
+                            <a href="{% url 'browseRestaurants' %}">View best healthy food</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\bbq.jpg' %}" class="card-img-top" alt="Food">
+                        <div class="card-body">
+                            <h5 class="card-title">Big flavours, low prices</h5>
+                            <p class="card-text">Check out our selection
+                                of wallet friendly eats.</p>
+                            <a href="{% url 'browseRestaurants' %}">Big flavours, low prices</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <h1 class="display-4">
+                <br>
+                <b>Need some more Options?</b>
+                <hr>
+            </h1>
+            <p class="lead">
+            <div class="btn-group" role="group" aria-label="buttons">
+                {% for mykey,myvalue in category %}
+                <a href="{% url 'browseRestaurants_oncategory' mykey %}" class="btn btn-light b1 btn-lg active" role="button" aria-pressed="true">{{myvalue}}</a>
+                {% endfor %}
+            </div>
+            </p>
+        </div>
+        
+        <div class="container">
+            <h1 class="display-4">
+                <br>
+                <b>Work with LoveFood</b>
+                <hr>
+            </h1>
+            <div class="row row-cols-1 row-cols-md-2">
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\donuts.jpg' %}" class="card-img-top cit" alt="Restaurants">
+                        <div class="card-body">
+                            <h2 class="card-title"><b>Restaurants</h2>
+                            <h5 class="card-text">Partner with LoveFood and reach more customers than ever. We
+                                handle delivery, so you can focus on the food.</h5>
+                            <a href="{% url 'register_seller'%}" class="btn btn-warning">Partner with us</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'user\imgs\bike.jpg' %}"  class="card-img-top cit" alt="Riders">
+                        <div class="card-body">
+                            <h2 class="card-title"><b>Riders</b>
+                            </h2>
+                            <h5 class="card-text">Become a rider at LoveFood and enjoy the freedom to fit work around your life.
+                                Plus great fees, perks and discounts.</h5>
+                            <a href="{% url 'register_deliverer'%}" class="btn btn-warning">Ride with us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div class="card bg-dark text-white">
+        <img src="{% static 'user\imgs\byf.jpg' %}" class="card-img cb" alt="OrderAtLoveFood">
+        <div class="card-img-overlay ct-center">
+            <h1 class="card-title">Ready to Order?</h1>
+            <h5 class="card-text">Browse local restaurants and businesses for delivery by entering your address
+                below.</h5>
+            <div class="input-group mb-3 ct-search">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-geo-alt" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                        </svg>
+                    </span>
+                </div>
+                <input type="text" class="form-control" placeholder="Enter your address..."
+                    aria-label="Enter your address" id="address" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" onclick="location.href='{% url 'browseRestaurants' %}'" type="button" id="button-addon2">
+                        
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right"
+                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M10.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 8l-2.647-2.646a.5.5 0 0 1 0-.708z" />
+                            <path fill-rule="evenodd"
+                                d="M2 8a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8z" />
+                                
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="footer pt-3">
+        <div class="links">
+            <br>
+            <hr style="background-color: rgb(65, 62, 62); margin: 1.5% 12%;">
+            <a href="#" class="l">Terms of Use</a>
+            <a href="#" class="l">Privacy Policy</a>
+            <a href="#" class="l">Cookie Policy</a>
+            <a href="#" class="l">Help</a>
+            <br>
+            <br>
+            <a href="#" class="l">Email</a>
+            <a href="#" class="l">Security</a>
+            <a href="#" class="l">FAQ Knowledge Base</a>
+            <a href="#" class="l">About LoveFood,Inc.</a>
+            <hr style="background-color: rgb(65, 62, 62); margin: 1.5% 12%;">
+            
+            <br>
+            <div class="last">
+                <p style="color: rgb(17, 17, 17); font-size: 12px; font-weight: bold;">Copyright © 2020 </p>
+            </div>
+        </div>
+    </div>
+</div>-->

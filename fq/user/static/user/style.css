@@ -1,0 +1,14 @@
+.footer{
+    background-color: rgb(19, 18, 18);
+    text-align: center;
+}
+.l{
+    padding-right: 2.5% !important;
+    color:lightblue;
+}
+.l:hover{
+    color:burlywood;
+}
+.last{
+    background-color: burlywood;
+}

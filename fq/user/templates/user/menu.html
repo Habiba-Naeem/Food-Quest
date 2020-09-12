@@ -1,0 +1,95 @@
+{% extends "user/layout.html"%}
+{% load static %}
+{% block content %}
+<section class="container-md overall" style="background-color: #D7E6EE;
+color: #4B85A4;">
+    <br><br>
+    <h1 class="font-weight-bolder text-center" style="Color: #4B85A4;">{{ restaurant_name.name }}</h1>
+    <br>
+    <div class="text-center">
+        {% if restaurant_name.picture %}
+        <img class="img-fluid img-thumbnail" src="{{ restaurant_name.picture.url }}"
+            style="max-width: 50%; height:auto;">
+        {% endif %}
+    </div>
+    <br>
+    <br>
+    <br>
+    {% for dish in dishes %}
+    <div class="shadow-lg p-3 mb-3 bg-white rounded dishdiv" data-dishid="{{ dish.id }}"
+        data-restaurant_nameid="{{ restaurant_name.id }}" style="color:black !important;">
+        <p class="ml-3">
+            {% if dish.picture.url %}
+            <img class="img-fluid rounded" src="{{ dish.picture.url }}" style="max-width: 20%; height:auto;">
+            {% endif %}
+            <br>
+            <b> {{ dish.name }} </b>
+            <br>
+            <small> <i>{{ dish.summary }}</i>
+                <br>
+                {{ dish.get_nationality_display}}
+                <br>
+                {{ dish.get_category_display }}
+            </small>
+            <br>
+            <b>Rs {{ dish.price }} </b>
+
+            <button class="rounded overall btn-outline-info cartbtn float-right border-0 dark-brown add-to-cart">Add to Cart</button>
+                      
+        </p>
+    </div>
+    {% endfor %}
+
+
+    <h2 class="font-weight-bold">{{ restaurant_name.name }} Information:</h2>
+    <h4 class="text-dark">{{ restaurant_name.address }}</h4>
+    </div>
+</section>
+{% endblock %}
+<!--
+<section class="container-md overall">
+    <br><br>
+    <h1 class="dark-brown font-weight-bolder text-center">{{ restaurant_name.name }}</h1>
+    <br>
+    <div class="text-center">
+        {% if restaurant_name.picture %}
+            <img class="img-fluid img-thumbnail" src="{{ restaurant_name.picture.url }}" style="max-width: 50%; height:auto;">
+        {% endif %}
+    </div>
+    <br>
+    <br>
+    <br>
+    {% for dish in dishes %}
+    <div class="shadow-lg p-3 mb-3 bg-white rounded dishdiv" data-dishid="{{ dish.id }}"
+        data-restaurant_nameid="{{ restaurant_name.id }}">
+        <p>
+            {% if dish.picture.url %}
+                      <img class="img-fluid rounded" src="{{ dish.picture.url }}" style="max-width: 20%; height:auto;">
+            {% endif %}
+            <br>
+            <b> {{ dish.name }} </b>
+            <br>
+            <small> <i>{{ dish.summary }}</i>
+                <br>
+                {{ dish.get_nationality_display}}
+                <br>
+                {{ dish.get_category_display }}
+            </small>
+            <br>
+            <b>Rs {{ dish.price }} </b>
+                
+                  <button class="rounded overall cartbtn float-right border-0 dark-brown add-to-cart">Add to Cart</button>
+
+                <div class="popup">Add to cart
+                    <span class="popuptext" id="myPopup">Item added to cart</span>
+                </div>
+            </p>
+    </div>
+    {% endfor %}
+
+
+    <h2 class="font-weight-bold dark-brown">{{ restaurant_name.name }} Information:</h2>
+    <h4 class="text-light">{{ restaurant_name.address }}</h4>
+    </div>
+</section>
+-->

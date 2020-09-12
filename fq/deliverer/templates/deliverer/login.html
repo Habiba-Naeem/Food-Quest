@@ -1,0 +1,103 @@
+{% extends "deliverer/layout.html"%}
+{% load static %}
+{% block content %}
+<section class="reg-loc-sec">
+    <div class="row justify-content-center p-5 pt-4 register-login-div">
+        <div class="col-md-5">
+            <div class="card" style="padding:10%;">
+                <article class="card-body">
+                    <h4 class="card-title text-center mb-4 mt-1" style="font-size: 34px;">Log in</h4>
+                    <hr>
+                    <form method="post" action="{% url 'login_deliverer' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <input name="email" class="form-control" placeholder="Email or login" type="email"
+                                    required>
+                            </div> <!-- input-group.// -->
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                </div>
+                                <input class="form-control" placeholder="******" type="password" name="password"
+                                    required>
+                            </div> <!-- input-group.// -->
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <button type="submit" id="login-button" class="btn btn-block"
+                                style="background-color:#265772; color:white;"> Log in
+                            </button>
+                        </div> <!-- form-group// -->
+                        <p class="text-center"><a href="#" class="btn" style=" color:black; ">Forgot password?</a>
+                        </p>
+                    </form>
+                    
+                    {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert alert-danger" role="alert">
+                                {{message}}
+                            </div>
+                            {% endfor%}
+                        {% endif %}
+                </article>
+            </div> <!-- card.// -->
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+<!--
+<section class="reg-loc-sec">
+    <div class="row justify-content-center p-5 pt-4 register-login-div">
+        <div class="col-md-5">
+            <div class="card" style="padding:10%;">
+                <article class="card-body">
+                    <h4 class="card-title text-center mb-4 mt-1" style="font-size: 34px;">Log in</h4>
+                    <hr>
+                    <form method="post" action="{% url 'login_deliverer' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <input name="email" class="form-control" placeholder="Email or login" type="email"
+                                    required>
+                            </div>  input-group.// 
+                        </div>  form-group// 
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                </div>
+                                <input class="form-control" placeholder="******" type="password" name="password"
+                                    required>
+                            </div>  input-group.// 
+                        </div>  form-group// 
+                        <div class="form-group">
+                            <button type="submit" id="login-button" class="btn btn-block"
+                                style="background-color: #FEB921; font-weight:bold; color:#722910;"> Log in
+                            </button>
+                        </div>  form-group// 
+                        <p class="text-center"><a href="#" class="btn" style="color:#722910;">Forgot password?</a>
+                        </p>
+                    </form>
+                    
+                    {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert alert-danger" role="alert">
+                                {{message}}
+                            </div>
+                            {% endfor%}
+                        {% endif %}
+                </article>
+            </div>  card.// 
+        </div>
+    </div>
+</section>
+-->

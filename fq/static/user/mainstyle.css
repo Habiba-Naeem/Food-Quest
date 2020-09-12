@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
+@import url("https://fonts.googleapis.com/css?family=Metal+Mania");
+
+@font-face {
+    font-family: "Booter - Zero Zero";
+    src: url("Fonts/Booter - Zero Zero.woff") format("woff"),
+         url("Fonts/Booter - Zero Zero.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.card-img-top{
+    height:50% !important;
+}
+.ct-center{
+    margin:10% !important;
+    margin-right: 32.5% !important;
+    margin-left:32.5% !important;
+    text-align: center !important;
+}
+.cb{
+    height:520px !important;
+    
+}
+.ct-search{
+    margin:5% !important;
+    margin-left:6% !important;
+    margin-right:6% !important;
+}
+.b1{
+    margin:1.2% !important;
+}
+body{
+  background-color: #D7E6EE;
+  color: #4B85A4;
+}
+.btn-warning{
+    background-color:rgb(63, 186, 207) !important;
+}
+.cit{
+    height:320px !important;
+}
+
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  /* The actual popup (appears on top) */
+  .popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+  }
+  
+  /* Popup arrow */
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Toggle this class when clicking on the popup container (hide and show the popup) */
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 3s;
+    animation: fadeIn 3s
+  }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 1;}
+    to {opacity:0 ;
+        display: none;}
+      }

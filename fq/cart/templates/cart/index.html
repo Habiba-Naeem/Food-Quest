@@ -1,0 +1,244 @@
+
+{% extends "user/layout.html"%}
+{% load static %}
+{% block content %}
+{% csrf_token %}
+<link rel="stylesheet" href="{% static 'cart/cart.css'%}">
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning" role="alert">
+  {{message}}
+</div>
+{% endfor %}
+{% else %}
+
+<section class="container content-section mt-4">
+  <h2 class="section-header">CART</h2>
+  <div class="cart-row">
+    <span class="cart-item cart-header cart-column">ITEM</span>
+    <span class="cart-price cart-header cart-column">PRICE</span>
+    <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+  </div>
+  <div class="cart-items">
+    {% for cart_item in cart_items %}
+    <div class="cart-row my-rows" id="{{ cart_item.id }}">
+      <div class="cart-item cart-column">
+        {% if cart_item.product.dish.picture.url %}
+        <img class="img-fluid rounded" src="{{ cart_item.product.dish.picture.url }}"
+          style="max-width: 20%; height:auto;">
+        {% endif %}
+        <span class="cart-item-title">{{cart_item.product.dish.name}}</span>
+
+        <small>By {{ cart_item.product.dish.restaurant.name }}</small>
+      </div>
+      <span class="cart-price cart-column" data-="" id="product-price"
+        data-price="{{ cart_item.product.dish.price }}">{{cart_item.product.dish.price}}</span>
+
+      <div class="cart-quantity cart-column">
+        <input class="cart-quantity-input" id="quantity" name="quantity" type="number" min="1" max="50" value="1">
+        <button class="btn btn-danger cancel" type="button">REMOVE</button>
+      </div>
+    </div>
+    {% endfor%}
+  </div>
+  <div class="cart-total">
+    <strong class="cart-total-title">Total</strong>
+    <span class="cart-total-price" name="total" id="total">$0</span>
+    <input type="hidden" name="total" id="totalhidden">
+  </div>
+  <button class="btn btn-primary btn-purchase" style="background-color:#265772 !important;"
+    type="button">Checkout</button>
+</section>
+
+<section id="checkout-form" class="checkout">
+  <article class="checkout">
+    <div>
+      <br><br>
+      <h1 class="mx-auto font-weight-bolder" style="width: 250px;color:#265772 !important; font-family: Metal Mania !important;">Checkout</h1>
+      <h3 class="dark-brown mx-auto font-weight-bolder" style="width: 550px; color:rgb(75, 72, 72) !important;">Please confirm your following info:</h3>
+      <br><br>
+    </div>
+
+    <div class="contents mx-auto" style="width: 670px;">
+
+      <form method="POST" name="myform" action="{% url 'order' %}" id="payment-form">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Username</span>
+          </div>
+          <input type="text" class="form-control" name="username" required placeholder="Username" aria-label="Username"
+            aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Email Address</span>
+          </div>
+          <input type="text" class="form-control" name="email" required placeholder="xyz@gmail.com"
+            aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Address</span>
+          </div>
+          <input type="text" name="address" id="order_address" required class="form-control" placeholder="Address"
+            aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Contact Number</span>
+          </div>
+          <input type="text" name="phone_number" id="order_phone_number" maxlength="20" required class="form-control"
+            placeholder="03x-xxxxxxxx" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Payment Method</span>
+          </div>
+          <select name="payment" class="custom-select form-control">
+            {% for mykey,myvalue in payment_choices%}
+            <option value="{{ mykey }}">{{myvalue}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Any note to Rider?</span>
+          </div>
+          <input type="text" class="form-control" name="note" placeholder="Give any note" aria-label="Username"
+            aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <strong class="cart-total-title">Total</strong>
+            <span class="cart-total-price" name="total" id="checkout_total">$0</span>
+            <input type="hidden" name="checkout_total" id="totalhidden2">
+          </div>
+        </div>
+        <div class="mx-auto" style="width: 200px;">
+          <input class="btn bg-light " type="submit" id="submit_order" value="Order all"></div>
+      </form>
+    </div>
+
+    <br>
+    <br>
+  </article>
+</section>
+
+{% endif %}
+{% endblock %}
+<!--
+
+<link rel="stylesheet" href="{% static 'cart/cart.css'%}">
+    ]
+    <div class="alert alert-warning" role="alert">
+       {{message}}
+    </div>
+    
+
+    <section class="container content-section">
+      <h2 class="section-header">CART</h2>
+      <div class="cart-row">
+          <span class="cart-item cart-header cart-column">ITEM</span>
+          <span class="cart-price cart-header cart-column">PRICE</span>
+          <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+      </div>
+      <div class="cart-items">
+        <div class="cart-row my-rows" id="{{ cart_item.id }}">
+          <div class="cart-item cart-column">
+            
+            <img class="img-fluid rounded" src="{{ cart_item.product.dish.picture.url }}" style="max-width: 20%; height:auto;">
+           
+              <span class="cart-item-title">{{cart_item.product.dish.name}}</span>
+              
+              <small>By {{ cart_item.product.dish.restaurant.name }}</small>
+          </div>
+          <span class="cart-price cart-column" data-="" id="product-price"  data-price="{{ cart_item.product.dish.price }}">{{cart_item.product.dish.price}}</span>
+          
+          <div class="cart-quantity cart-column" >
+              <input class="cart-quantity-input" id="quantity" name="quantity" type="number" min="1" max="50" value="1">
+              <button class="btn btn-danger cancel" type="button">REMOVE</button>
+          </div>
+        </div>
+        
+      </div>
+      <div class="cart-total" >
+          <strong class="cart-total-title">Total</strong>
+          <span class="cart-total-price" name="total" id="total">$0</span>
+          <input type="hidden" name="total" id="totalhidden">
+      </div>
+      <button class="btn btn-primary btn-purchase" type="button">Checkout</button>
+    </section>
+
+<section id="checkout-form" class="checkout">
+  <article class="checkout">
+    <div>
+      <br><br>
+      <h1 class="mx-auto font-weight-bolder" style="width: 250px;">Checkout</h1>
+      <h3 class="dark-brown mx-auto font-weight-bolder" style="width: 550px;">Please confirm your following info:</h3>
+      <br><br>
+  </div>
+  
+  <div class="contents mx-auto" style="width: 670px;">
+
+    <form method="POST" name="myform" action="{% url 'order' %}" id="payment-form">
+        
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Username</span>
+        </div>
+        <input type="text" class="form-control" name="username" required placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Email Address</span>
+        </div>
+        <input type="text" class="form-control" name="email" required  placeholder="xyz@gmail.com" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Address</span>
+        </div>
+        <input type="text" name="address" id="order_address" required  class="form-control" placeholder="Address" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Contact Number</span>
+        </div>
+        <input type="text" name="phone_number" id="order_phone_number" maxlength="20" required  class="form-control" placeholder="03x-xxxxxxxx" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Payment Method</span>
+        </div>
+        <select name="payment" class="custom-select form-control">
+          
+          <option value="{{ mykey }}">{{myvalue}}</option>
+          
+      </select>
+    </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Any note to Rider?</span>
+        </div>
+        <input type="text" class="form-control" name="note" placeholder="Give any note" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <strong class="cart-total-title">Total</strong>
+          <span class="cart-total-price" name="total" id="checkout_total">$0</span>
+          <input type="hidden" name="checkout_total" id="totalhidden2">
+        </div>
+    </div>
+      <div class="mx-auto" style="width: 200px;">        
+        <input class="btn bg-light " type="submit" id="submit_order" value="Order all"></div>
+      </form>
+      </div>
+
+      <br>
+      <br>
+  </article>
+</section>
+-->

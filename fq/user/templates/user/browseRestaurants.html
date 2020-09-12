@@ -1,0 +1,97 @@
+{% extends "user/layout.html"%}
+{% load static %}
+
+{% block content %}
+<br>
+<br>
+<div class="container-md">
+
+  <div class="card-deck">
+    {% for restaurant in restaurants %}
+    {% if forloop.counter|divisibleby:4 %}
+  </div><br>
+  <br>
+  <br>
+  <div class="card-deck">
+    <div class="card" style="max-width: 33%; height: auto;">
+      
+      {% if restaurant.picture.url %}
+          <img class="img-fluid img-thumbnail card-img-top" style="max-width:100%; height:auto" src="{{ restaurant.picture.url }}" >
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title ">{{ restaurant.name }}</h5>
+        <p class="card-text">Free Delivery.<small class="text-muted float-right"><span class="fa fa-star"></span><b>
+              4.1</b>/5 (1k+)</small></p>
+        <a href="{% url 'restaurant' restaurant.name %}">View menu</a>
+      </div>
+    </div>
+    {% else %}
+    <div class="card" style="max-width: 33%; height: auto;">
+      
+        {% if restaurant.picture.url %}
+            <img class="img-fluid img-thumbnail card-img-top" style="max-width:100%; height:auto" src="{{ restaurant.picture.url }}" >
+        {% endif %}
+        
+      <div class="card-body">
+        <h5 class="card-title ">{{ restaurant.name }}</h5>
+        <p class="card-text">Free Delivery.<small class="text-muted float-right"><span class="fa fa-star"></span><b>
+              4.1</b>/5 (1k+)</small></p>
+        <a href="{% url 'restaurant' restaurant.name %}">View menu</a>
+      </div>
+    </div>
+    {% endif %}
+    <br>
+    <br>
+    <br>
+
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+<!--
+<br>
+<br>
+<div class="container-md">
+
+  <div class="card-deck">
+    {% for restaurant in restaurants %}
+    {% if forloop.counter|divisibleby:4 %}
+  </div><br>
+  <br>
+  <br>
+  <div class="card-deck">
+    <div class="card" style="max-width: 33%; height: auto;">
+      
+      {% if restaurant.picture.url %}
+          <img class="img-fluid img-thumbnail card-img-top" style="max-width:100%; height:auto" src="{{ restaurant.picture.url }}" >
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title ">{{ restaurant.name }}</h5>
+        <p class="card-text">Free Delivery.<small class="text-muted float-right"><span class="fa fa-star"></span><b>
+              4.1</b>/5 (1k+)</small></p>
+        <a href="{% url 'restaurant' restaurant.name %}">View menu</a>
+      </div>
+    </div>
+    {% else %}
+    <div class="card" style="max-width: 33%; height: auto;">
+      
+        {% if restaurant.picture.url %}
+            <img class="img-fluid img-thumbnail card-img-top" style="max-width:100%; height:auto" src="{{ restaurant.picture.url }}" >
+        {% endif %}
+        
+      <div class="card-body">
+        <h5 class="card-title ">{{ restaurant.name }}</h5>
+        <p class="card-text">Free Delivery.<small class="text-muted float-right"><span class="fa fa-star"></span><b>
+              4.1</b>/5 (1k+)</small></p>
+        <a href="{% url 'restaurant' restaurant.name %}">View menu</a>
+      </div>
+    </div>
+    {% endif %}
+    <br>
+    <br>
+    <br>
+
+    {% endfor %}
+  </div>
+</div>
+-->

@@ -1,0 +1,16 @@
+{% extends "seller/layout.html"%}
+{% load static %}
+{% block content %}
+<h1 class="my-5" style="text-align: center; font-family: Metal Mania ; font-weight: bold; margin-top: 8% !important;">Welcome to your account<span
+        id="seller-name"> {{ seller_name }}!
+    </span></h1>
+<div class="jumbotron jumbotron-fluid m-5 pb-3" style="background-color: white;" id="dish-list">
+    <h2 class="mx-4" style=" font-size: 25px; color:black !important;">Here are the items you've posted:</h2>
+</div>
+<div class="text-center ">
+    <a href="{% url 'additem' %}" class="btn btn-dark justify-content-center btn-lg "
+        style="background-color: #265772;" role="button" aria-disabled="false">Add dishes</a>
+    <a href="{% url 'display_orders' %}" class="btn btn-dark btn-lg ml-2  justify-content-center"
+        style="background-color: #265772;" role="button" aria-disabled="false">View orders</a>
+</div>
+{% endblock %}

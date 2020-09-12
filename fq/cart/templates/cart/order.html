@@ -1,0 +1,213 @@
+{% extends "user/layout.html"%}
+{% load static %}
+{% block content %}
+{% csrf_token %}
+
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning" role="alert">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+<section class="order overall container-md">
+    <article class="order">
+        <div>
+            <br><br>
+            <h1 class="mx-auto font-weight-bolder" style="width: 250px;">Your orders</h1>
+            <br><br>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="card-deck">
+            {% for order in orders %}
+            {% if forloop.counter0|divisibleby:3 %}
+        </div><br>
+        <br>
+        <br>
+        <div class="card-deck">
+            <div class="card shadow-lg  rounded" style="max-width: 33%; height: auto;">
+
+                <div class="card-body ">
+                    <h5 class="card-title">Delivery status</h5>
+                    <br>
+                    {% if not order.status %}
+                    <span class=" mx-auto alert alert-danger py-2 status" role="alert">
+
+                        Pending
+
+                    </span></h5>
+                    {% else %}
+                    <span class=" mx-auto alert alert-success py-2 status" role="alert">
+
+                        Delivered
+
+                    </span></h5>
+                    {% endif %}
+                    <br><br>
+                    <p class="card-text">
+                        <b>Order item:</b> {{ order.order_items.product.dish.name }}<br>
+                        <b>Quantity:</b> {{ order.order_items.quantity }}<br>
+                        <b>Order Id:</b> {{order.order_items.id }}<br>
+                        <b>User name:</b> {{ order.user.first_name }} <br>
+                        <b>Address:</b> {{ order.address }}<br>
+                        <b>Phone number:</b> {{ order.phone_number }}<br>
+                        <b>Payment method:</b> {{ order.get_payment_display }}<br>
+                        <b>Deliverer: </b> {{ order.deliverer.user.first_name }}<br>
+                        <b>Deliverer phone number: </b> {{ order.deliverer.phone_number }}<br>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <b>Bill Amount:</b> <span class="float-right"> Rs {{ order.order_items.total }}
+                </div>
+
+            </div>
+            {% else %}
+            <div class="card shadow-lg  rounded" style="max-width: 33%; height: auto;">
+
+                <div class="card-body ">
+                    <h5 class="card-title">Delivery status</h5>
+                    <br>
+                    {% if not order.status %}
+                    <span class=" mx-auto alert alert-danger py-2 status" role="alert">
+
+                        Pending
+
+                    </span></h5>
+                    {% else %}
+                    <span class=" mx-auto alert alert-success py-2 status" role="alert">
+
+                        Delivered
+
+                    </span></h5>
+                    {% endif %}
+                    <br><br>
+                    <p class="card-text">
+                        <b>Order item:</b> {{ order.order_items.product.dish.name }}<br>
+                        <b>Quantity:</b> {{ order.order_items.quantity }}<br>
+                        <b>Order Id:</b> {{order.order_items.id }}<br>
+                        <b>User name:</b> {{ order.user.first_name }} <br>
+                        <b>Address:</b> {{ order.address }}<br>
+                        <b>Phone number:</b> {{ order.phone_number }}<br>
+                        <b>Payment method:</b> {{ order.get_payment_display }}<br>
+                        <b>Deliverer: </b> {{ order.deliverer.user.first_name }}<br>
+                        <b>Deliverer phone number: </b> {{ order.deliverer.phone_number }}<br>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <b>Bill Amount:</b> <span class="float-right"> Rs {{ order.order_items.total }}
+                </div>
+
+            </div>
+            {% endif %}
+            <br>
+            <br>
+            <br>
+
+            {% endfor %}
+
+        </div>
+        <br>
+        <br>
+    </article>
+</section>
+
+{% endblock %}
+<!--
+
+<div class="alert alert-warning" role="alert">
+    {{message}}
+</div>
+<section class="order overall container-md">
+    <article class="order">
+        <div>
+            <br><br>
+            <h1 class="mx-auto font-weight-bolder" style="width: 250px;">Your orders</h1>
+            <br><br>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="card-deck">
+            
+        </div><br>
+        <br>
+        <br>
+        <div class="card-deck">
+            <div class="card shadow-lg  rounded" style="max-width: 33%; height: auto;">
+
+                <div class="card-body ">
+                    <h5 class="card-title">Delivery status</h5>
+                    <br>
+                    <span class=" mx-auto alert alert-danger py-2 status" role="alert">
+
+                        Pending
+
+                    </span></h5>
+                    <span class=" mx-auto alert alert-success py-2 status" role="alert">
+
+                        Delivered
+
+                    </span></h5>
+                    <br><br>
+                    <p class="card-text">
+                        <b>Order item:</b> {{ order.order_items.product.dish.name }}<br>
+                        <b>Quantity:</b> {{ order.order_items.quantity }}<br>
+                        <b>Order Id:</b> {{order.order_items.id }}<br>
+                        <b>User name:</b> {{ order.user.first_name }} <br>
+                        <b>Address:</b> {{ order.address }}<br>
+                        <b>Phone number:</b> {{ order.phone_number }}<br>
+                        <b>Payment method:</b> {{ order.get_payment_display }}<br>
+                        <b>Deliverer: </b> {{ order.deliverer.user.first_name }}<br>
+                        <b>Deliverer phone number: </b> {{ order.deliverer.phone_number }}<br>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <b>Bill Amount:</b> <span class="float-right"> Rs {{ order.order_items.total }}
+                </div>
+
+            </div>
+            <div class="card shadow-lg  rounded" style="max-width: 33%; height: auto;">
+
+                <div class="card-body ">
+                    <h5 class="card-title">Delivery status</h5>
+                    <br>
+                    <span class=" mx-auto alert alert-danger py-2 status" role="alert">
+
+                        Pending
+
+                    </span></h5>
+                    <span class=" mx-auto alert alert-success py-2 status" role="alert">
+
+                        Delivered
+
+                    </span></h5>
+                    <br><br>
+                    <p class="card-text">
+                        <b>Order item:</b> {{ order.order_items.product.dish.name }}<br>
+                        <b>Quantity:</b> {{ order.order_items.quantity }}<br>
+                        <b>Order Id:</b> {{order.order_items.id }}<br>
+                        <b>User name:</b> {{ order.user.first_name }} <br>
+                        <b>Address:</b> {{ order.address }}<br>
+                        <b>Phone number:</b> {{ order.phone_number }}<br>
+                        <b>Payment method:</b> {{ order.get_payment_display }}<br>
+                        <b>Deliverer: </b> {{ order.deliverer.user.first_name }}<br>
+                        <b>Deliverer phone number: </b> {{ order.deliverer.phone_number }}<br>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <b>Bill Amount:</b> <span class="float-right"> Rs {{ order.order_items.total }}
+                </div>
+
+            </div>
+            <br>
+            <br>
+            <br>
+
+        </div>
+    </article>
+</section>
+-->
